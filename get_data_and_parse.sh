@@ -2,8 +2,20 @@
 #This script has several methods that can be used to download, parse, etc. FIRST data from various sources
 #@author Adam_Tetelman
 
+#URLs and whatnot used by github data
+github_zip_url="https://github.com/the-blue-alliance/the-blue-alliance-data/archive/master.zip"
+git_data_dir="the-blue-alliance-data-master"
+git_data_zip="blue_data.zip"
 
+#URLs and whatnot used by scraper
+teams_file="teams.html"
+events_file="events.html"
+teams_list="teams.txt"
+base_url="http://www.thebluealliance.com"
+teams_url="${base_url}/teams"
+events_url="${base_url}/events"
 
+#Used to download and parse html files
 def parse_file() {
     in_file=${1}
     out_file=${2}
@@ -13,11 +25,6 @@ def parse_file() {
     #TODO: cut delim and grep search will not play nicely with quotes
     grep ${search} ${in_file} | cut -d${delim} -f2 | uniq > ${out_file}
 }
-
-#URLs and whatnot used by github data
-github_zip_url="https://github.com/the-blue-alliance/the-blue-alliance-data/archive/master.zip"
-git_data_dir="the-blue-alliance-data-master"
-git_data_zip="blue_data.zip"
 
 #Download and extra data off github
 pull_from_github() {
@@ -31,16 +38,6 @@ parse_from_github() {
     echo "Unimplemented"
 }
 
-
-#URLs and whatnot used by scraper
-teams_file="teams.html"
-events_file="events.html"
-teams_list="teams.txt"
-base_url="http://www.thebluealliance.com"
-teams_url="${base_url}/teams"
-events_url="${base_url}/events"
-
-
 #I threw this script together before I realized BlueAlliance had an API and a datashare on github
 pull_from_bluealliance_via_scrape() {
     #Download the teams page
@@ -49,10 +46,8 @@ pull_from_bluealliance_via_scrape() {
     #Download the eventspage
     curl ${events_url} -o ${events_file}
 
-
     #Parse the teams page into a list of all teams
     parse_file ${teams_file} ${teams_list} '"' '/team/'
-
 
     while read team; do   
 
@@ -76,14 +71,13 @@ parse_from_bluealliance_via_scrape() {
 
 pull_from_bluealliance_via_api() {
     #TODO
-    echo "Unimplemented
+    echo "Unimplemented"
 }
 
 parse_from_bluealliance_via_api() {
     #TODO
     echo "Unimplemented"
 }
-
 
 #pull_from_bluealliance_via_api
 #parse_from_bluealliance_via_api
