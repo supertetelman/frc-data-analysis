@@ -20,11 +20,11 @@ team_scores(:,1) = teams(:,:);
 
 %Create a match matrix match_count rows and 9 columns (6 teams + match number + 2
 %scores)
-matches = zeros(match_count,9)
+matches = zeros(match_count,9);
 %Randomly pick 3 teams per match
 for i=1:match_count
     %TODO:Use a list and list contains instead of lots of || statements
-    scoreR = randi(score_range)
+    scoreR = randi(score_range);
     team1R = randi(team_count);
     team2R = randi(team_count);
     while team2R == team1R
@@ -35,7 +35,7 @@ for i=1:match_count
         team3R = randi(team_count);
     end
 
-    scoreB = randi(score_range)
+    scoreB = randi(score_range);
     team1B = randi(team_count);
     while team1B == team1R || team1B == team2R || team1B == team3R
         team1B = randi(team_count);
