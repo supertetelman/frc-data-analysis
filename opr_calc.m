@@ -31,5 +31,5 @@ for i=1:q
 end
 
 %Solve the matrix equation
-X(:,2) = linsolve(team_calc,pm(:,4)); %TODO remove zeros
+X(:,2) = team_calc \ pm(:,4)); %TODO remove zeros
 end
