@@ -1,16 +1,18 @@
 %This functions takes 1 input
 %
 %matches: A M x 9 matrix in the format match_num,team1_red, team2_red,
-%team3_red, red_score, team1_blue, team2_blue, team3_blue, blue_score.
+%team3_red, team1_blue, team2_blue, team3_blue, red_score, blue_score.
 %Where team is the FRC team number (811)
 %
 %The output of this function will by a matrix mapping each team number to
 %an opr
 %@author Adam Tetelman, FRC Team 811 Mentor, 2/17/2015
+
 function X = opr_calc(matches)
+
 %pm (parsed_matches) team1, team2, team3, teamScore
 %Sepearate red/blue scores into their own rows 
-pm = [matches(:,2:5);matches(:,6:9)];
+pm = [matches(:,2:4) matches(:,8); matches(:,5:7) matches(:,9)];
 [q w] = size(pm);
 
 
